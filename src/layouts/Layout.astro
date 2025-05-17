@@ -1,22 +1,49 @@
+---
+import "@/styles/global.css"
+const {title} = Astro.props
+---
+
 <!doctype html>
-<html lang="en">
+<html lang="es">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>{title}</title>
 	</head>
-	<body>
-		<slot />
+	<body class="min-h-screen bg-gradient-to-b from-[#253731] to-[#202020] text-white">
+		<header class="container mx-auto px-4 py-6">
+			<nav class="flex items-center justify-between">
+				<div class="font-bold text-2xl">
+					Cortame
+				</div>
+				<ul>
+					<li>Iniciar Sesión</li>
+				</ul>
+			</nav>
+		</header>
+		<main class="container mx-auto px-4 py-20">
+			<slot />
+		</main>
+		<footer class="container mx-auto px-4 py-6 mt-auto"> 
+			<div class="border-t boder-[#2a3c36] pt-8 text-center text-sm text-gray-400">
+				<p> {new Date().getFullYear()} Cortame. Hecho con ♥️ por <a href="https://henryck.dev">Henryck</a></p>
+			</div>
+		</footer>
 	</body>
 </html>
 
 <style>
-	html,
-	body {
+	html, body {
 		margin: 0;
-		width: 100%;
-		height: 100%;
+    width: 100%;
+    height: auto;
+		background: linear-gradient(180deg, #253731 0%, #202020 100%);
+    display: flex;
+    flex-direction: column;
+	}
+
+	html { 
+		background-color: #202020;
 	}
 </style>

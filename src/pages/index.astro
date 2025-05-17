@@ -1,11 +1,23 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Cortame - Acortador de URL">
+  <div class="max-w-4xl mx-auto text-center flex flex-col items-center justify-center gap-10 pt-8">
+    <h1 class="text-4xl md:text-6xl font-bold text-balance">
+      Acorta tus tus enlaces con <span class="text-emerald-400">IA</span>
+    </h1>
+    <p class="text-lg md:text-xl text-gray-300 text-balance">
+      Crea enlaces cortos, genera códigos QR y analiza el rendimiento de tus
+      enlaces con nuestra plataforma potenciada por IA.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <button
+        class="bg-emerald-600 hover:bg-emerald-700 transition-all duration-150 cursor-pointer text-white px-8 py-4 text-lg rounded-lg hover:scale-105"
+      >
+        Crear Link →
+      </button>
+    </div>
+  </div>
+
 </Layout>
