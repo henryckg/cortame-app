@@ -1,9 +1,9 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import Layout from "@/layouts/Layout.astro";
 ---
 
 <Layout title="Cortame - Acortador de URL">
-  <div class="max-w-4xl mx-auto text-center flex flex-col items-center justify-center gap-10 pt-8">
+  <div class="max-w-4xl mx-auto text-center flex flex-col items-center justify-center gap-10 pt-20">
     <h1 class="text-4xl md:text-6xl font-bold text-balance">
       Acorta tus tus enlaces con <span class="text-emerald-400">IA</span>
     </h1>
@@ -12,11 +12,12 @@ import Layout from "../layouts/Layout.astro";
       enlaces con nuestra plataforma potenciada por IA.
     </p>
     <div class="flex flex-col sm:flex-row gap-4 justify-center">
-      <button
-        class="bg-emerald-600 hover:bg-emerald-700 transition-all duration-150 cursor-pointer text-white px-8 py-4 text-lg rounded-lg hover:scale-105"
+      <a
+        href="/dashboard"
+        class="bg-emerald-600 hover:bg-emerald-700 transition-all duration-150 cursor-pointer text-white px-8 py-4 text-lg rounded-md hover:scale-105"
       >
         Crear Link →
-      </button>
+      </a>
     </div>
   </div>
 
