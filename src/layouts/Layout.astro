@@ -11,18 +11,18 @@ const {title} = Astro.props
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<title>{title}</title>
 	</head>
-	<body class="min-h-screen bg-gradient-to-b from-[#253731] to-[#202020] text-white">
-		<header class="container mx-auto px-4 py-6">
+	<body class="min-h-screen bg-gradient-to-b from-forest to-[#202020] text-white">
+		<header class="container mx-auto px-4 py-6 border-b border-forest">
 			<nav class="flex items-center justify-between">
-				<div class="font-bold text-2xl">
-					Cortame
+				<div class="font-bold text-xl">
+					<a href="/">Cortame</a>
 				</div>
 				<ul>
 					<li>Iniciar Sesión</li>
 				</ul>
 			</nav>
 		</header>
-		<main class="container mx-auto px-4 py-20">
+		<main class="container mx-auto px-4 py-4">
 			<slot />
 		</main>
 		<footer class="container mx-auto px-4 py-6 mt-auto"> 
