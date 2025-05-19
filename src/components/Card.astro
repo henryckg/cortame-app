@@ -1,0 +1,8 @@
+---
+const {title, content} = Astro.props
+---
+
+<div class="rounded-md border w-full bg-forest-darker border-forest-dark flex flex-col justify-between px-8">
+  <header class="text-sm font-medium text-gray-400 py-6">{title}</header>
+  <span class="text-3xl font-bold pb-6">{content}</span>
+</div>

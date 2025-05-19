@@ -1,0 +1,99 @@
+---
+import Card from "@/components/Card.astro";
+import LinkCard from "@/components/LinkCard.astro";
+import Layout from "@/layouts/Layout.astro";
+---
+
+<Layout title="Dashboard - Cortame">
+  <div class="flex justify-between items-center mb-8">
+    <h1 class="text-2xl font-bold">Dashboard</h1>
+    <button
+      class="bg-emerald-600 hover:bg-emerald-700 transition-all duration-150 cursor-pointer text-white px-4 py-2 text-md rounded-md hover:scale-105"
+    >
+      + Nuevo Link
+    </button>
+  </div>
+
+  <section class="grid grid-cols-3 justify-items-center gap-8 mb-8">
+    <Card title="Total de Links" content="10" />
+    <Card title="Total de Links" content="10" />
+    <Card title="Total de Links" content="10" />
+  </section>
+
+  <section class="mb-8 flex flex-col gap-4">
+    <div class="flex items-center justify-between">
+      <h2 class="text-xl font-bold">Gestionar Links</h2>
+      <form>
+        <input
+          type="text"
+          placeholder="Buscar links..."
+          class="text-sm py-2 px-4 bg-forest-darker border-forest text-white w-64 focus-visible:ring-emerald-500 font-normal"
+        />
+      </form>
+    </div>
+
+    <aside
+      class="bg-forest-darker border rounded-md border-forest w-52 flex justify-between text-gray-400 px-4 py-2 text-sm"
+    >
+      <button
+        class="cursor-pointer data-[state=active]:bg-emerald-600 data-[state=active]:text-white"
+        >Todos</button
+      >
+      <button
+        class="cursor-pointer data-[state=active]:bg-emerald-600 data-[state=active]:text-white"
+        >Con QR</button
+      >
+      <button
+        class="cursor-pointer data-[state=active]:bg-emerald-600 data-[state=active]:text-white"
+        >Con IA</button
+      >
+    </aside>
+
+    <div class="space-y-4">
+      {
+        [1, 2, 3].map((item) => (
+          <LinkCard key={item} class="bg-[#1c2b27] border-[#2a3c36] text-white">
+            <div class="p-4">
+              <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div class="flex-1">
+                  <div class="flex items-center gap-2 mb-1">
+                    <span class="font-medium">
+                      shortlink.com/promo
+                    </span>
+                    <button
+                      class="h-6 w-6 text-gray-400 hover:text-white"
+                    >
+                    </button>
+                  </div>
+                  <div class="text-sm text-gray-400 truncate">
+                    https://ejemplo-de-url-muy-larga-que-necesita-ser-acortada.com/pagina-ejemplo-
+                  </div>
+                </div>
+                <div class="flex items-center gap-2 text-sm text-gray-400">
+                  <span>{item * 42} visitas</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <button
+                    class="border-emerald-600 text-emerald-400 hover:bg-emerald-900/20"
+                  >
+                    QR
+                  </button>
+                  <button
+                    class="text-gray-400 hover:text-white"
+                  >
+
+                  </button>
+                  <button
+                    class="text-gray-400 hover:text-white"
+                  >
+                    X
+                  </button>
+                </div>
+              </div>
+            </div>
+          </LinkCard>
+        ))
+      }
+    </div>
+  </section>
+</Layout>
