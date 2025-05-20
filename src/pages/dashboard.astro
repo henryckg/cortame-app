@@ -8,6 +8,10 @@ import ChartBar from "@/assets/svg/chart-bar.svg"
 import QR from "@/assets/svg/qrcode.svg"
 import Trash from "@/assets/svg/trash.svg"
 import ExternalLink from "@/assets/svg/external-link.svg"
+
+const user = await Astro.locals.currentUser()
+if (!user) return Astro.redirect("/")
+
 ---
 
 <Layout title="Dashboard - Cortame">
