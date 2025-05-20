@@ -5,14 +5,16 @@ const client = createClient({
   authToken: import.meta.env.TURSO_DB_TOKEN ?? ""
 })
 
-export const createLink = async (id: string, original: string, userId: string ) => {
+export const createLink = async (id: string | undefined, original: string, userId: string ) => {
+  const slug = id && id.trim() !== "" ? id : crypto.randomUUID().slice(0, 6)
   const sql = `INSERT INTO urls (id, original, user_id) VALUES (?, ?, ?)`
+  
   await client.execute({
     sql,
-    args: [id, original, userId]
+    args: [slug, original, userId]
   })
 
-  return id
+  return slug
 }
 
 export const getOriginalUrl = async (id: string) => {
@@ -24,4 +26,14 @@ export const getOriginalUrl = async (id: string) => {
   })
 
   return result.rows[0]?.original || null
+}
+
+export const getUserLinks = async (user: string) => {
+  const sql = `SELECT id, original, created_at FROM urls WHERE user_id = ? ORDER BY created_at DESC`
+  const results = await client.execute({
+    sql,
+    args: [user]
+  })
+
+  return results.rows
 }
