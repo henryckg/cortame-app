@@ -62,7 +62,7 @@ const userLinks = await getUserLinks(userId);
       >
     </aside>
 
-    <div class="space-y-4">
+    <div class="space-y-4 mb-8">
       {
         userLinks.map(({ id, original }) => (
           <LinkCard class="bg-[#1c2b27] border-[#2a3c36] text-white">
@@ -118,7 +118,7 @@ const userLinks = await getUserLinks(userId);
 
     <div class="rounded-md border w-full bg-forest-darker border-forest-dark flex flex-col justify-between px-8 py-4 gap-8">
       <div>
-        <h3 class="text-xl font-bold">Crear Nuevo Link</h3>
+        <h3 class="text-lg font-bold">Crear Nuevo Link</h3>
         <div class="text-gray-400">
           Acorta una URL y opcionalmente genera un código QR
         </div>
@@ -126,14 +126,14 @@ const userLinks = await getUserLinks(userId);
       <div>
         <form class="space-y-4">
           <div>
-            <label class="text-sm font-medium mb-1 block ">URL Original</label>
+            <label class="text-sm font-medium mb-2 block ">URL Original</label>
             <input
               placeholder="https://tu-url-larga.com"
               class="bg-[#1a2622] border-[#2a3c36] text-white focus-visible:ring-emerald-500 w-full px-3 py-2"
             />
           </div>
           <div>
-            <label class="text-sm font-medium mb-1 block"
+            <label class="text-sm font-medium mb-2 block"
               >Alias personalizado (opcional)</label
             >
             <div class="flex items-center">
