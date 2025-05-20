@@ -14,6 +14,12 @@ importers:
       '@clerk/astro':
         specifier: ^2.7.4
         version: 2.7.4(astro@5.7.13(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.40.2)(typescript@5.8.3))(react@19.1.0)
+      '@clerk/localizations':
+        specifier: ^3.16.0
+        version: 3.16.0
+      '@clerk/themes':
+        specifier: ^2.2.45
+        version: 2.2.45
       '@tailwindcss/vite':
         specifier: ^4.1.7
         version: 4.1.7(vite@6.3.5(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1))
@@ -87,6 +93,10 @@ packages:
       svix:
         optional: true
 
+  '@clerk/localizations@3.16.0':
+    resolution: {integrity: sha512-NOS0y9fEmRATzB6owcbmjirygXv2PaiVKBECqnpSvb0CYvQmhU+uVUqfim9+Xv/PEXiW+h2eH+tvd+X9VzxwFw==}
+    engines: {node: '>=18.17.0'}
+
   '@clerk/shared@3.9.1':
     resolution: {integrity: sha512-Gw7yPaas3lv+pkkbBwuqVVtWVH1nZl1hF8kVvdEhPALOkf6ww6azL6qcHaiFUHCW+iult3flJjplduFrfWF50g==}
     engines: {node: '>=18.17.0'}
@@ -98,6 +108,10 @@ packages:
         optional: true
       react-dom:
         optional: true
+
+  '@clerk/themes@2.2.45':
+    resolution: {integrity: sha512-tm6eWoyap0oszBP6IQMDgVirZeaEebjAnCWBiEsgnYk0G8iY52imK5JLtmTlSuhDGBw1xNKmOzP850AZgOtDhA==}
+    engines: {node: '>=18.17.0'}
 
   '@clerk/types@4.59.0':
     resolution: {integrity: sha512-VZ61lDWoz9cWTlSpO1KMGq7utl96ZuSBIOpM6togxYTp+TG0kD6QEJVinMaJLREtx8jRvXpMG7ZzBLE3zy0GSA==}
@@ -1939,6 +1953,10 @@ snapshots:
       - react
       - react-dom
 
+  '@clerk/localizations@3.16.0':
+    dependencies:
+      '@clerk/types': 4.59.0
+
   '@clerk/shared@3.9.1(react@19.1.0)':
     dependencies:
       '@clerk/types': 4.59.0
@@ -1949,6 +1967,11 @@ snapshots:
       swr: 2.3.3(react@19.1.0)
     optionalDependencies:
       react: 19.1.0
+
+  '@clerk/themes@2.2.45':
+    dependencies:
+      '@clerk/types': 4.59.0
+      tslib: 2.8.1
 
   '@clerk/types@4.59.0':
     dependencies:

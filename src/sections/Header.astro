@@ -1,0 +1,28 @@
+---
+import {
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  UserButton,
+} from "@clerk/astro/components";
+---
+
+<header class="container mx-auto px-4 py-6 border-b border-forest">
+  <nav class="flex items-center justify-between">
+    <div class="font-bold text-xl">
+      <a href="/">Cortame</a>
+    </div>
+
+    <SignedOut>
+      <SignInButton mode="modal" forceRedirectUrl="/dashboard">
+        <ul class="cursor-pointer">
+          Iniciar Sesión
+        </ul>
+      </SignInButton>
+    </SignedOut>
+
+    <SignedIn>
+      <UserButton />
+    </SignedIn>    
+  </nav>
+</header>

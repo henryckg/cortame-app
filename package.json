@@ -11,6 +11,8 @@
   "dependencies": {
     "@astrojs/node": "^9.2.1",
     "@clerk/astro": "^2.7.4",
+    "@clerk/localizations": "^3.16.0",
+    "@clerk/themes": "^2.2.45",
     "@tailwindcss/vite": "^4.1.7",
     "astro": "^5.7.13",
     "tailwindcss": "^4.1.7"
