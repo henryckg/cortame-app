@@ -28,6 +28,17 @@ export const getOriginalUrl = async (id: string) => {
   return result.rows[0]?.original || null
 }
 
+export const createUser = async (user:string) => {
+  const sql = `INSERT INTO users (email) VALUES (?)`
+
+  await client.execute({
+    sql,
+    args: [user]
+  })
+
+  return user
+}
+
 export const getUserLinks = async (user: string) => {
   const sql = `SELECT id, original, created_at FROM urls WHERE user_id = ? ORDER BY created_at DESC`
   const results = await client.execute({

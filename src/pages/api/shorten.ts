@@ -1,17 +1,20 @@
-import { createLink } from '@/db/client'
+import { createLink, createUser } from '@/db/client'
 import type { APIRoute } from 'astro'
 
-const USER = "guaramatohenryck@gmail.com"
+export const POST: APIRoute = async ({request, locals}) => {
+  const {slug, url} = await request.json()
+  const user = await locals.currentUser()
+  if (!user) return new Response('Unauthorized', {status: 401})
 
-export const POST: APIRoute = async ({request}) => {
-  const {slug, url, userId} = await request.json()
+  const userId = user?.emailAddresses[0]?.emailAddress
 
   if (!url || !url.startsWith("http")) {
     return new Response ('Invalid URL', {status: 400})
   }
 
   try {
-    const id = await createLink(slug, url, USER)
+    const user = await createUser(userId)
+    const id = await createLink(slug, url, userId)
     const shortUrl = `${new URL(request.url).origin}/${id}`
 
     return new Response(JSON.stringify({ shortUrl }), {
