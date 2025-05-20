@@ -1,4 +1,4 @@
-import { type APIRoute } from "astro"
+import type { APIRoute } from "astro"
 import { getOriginalUrl } from "@/db/client"
 
 export const GET: APIRoute = async ({params, redirect}) => {

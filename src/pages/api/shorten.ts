@@ -1,10 +1,10 @@
 import { createLink } from '@/db/client'
-import {type APIRoute} from 'astro'
+import type { APIRoute } from 'astro'
 
-const USER = "henryck"
+const USER = "guaramatohenryck@gmail.com"
 
 export const POST: APIRoute = async ({request}) => {
-  const {slug, url} = await request.json()
+  const {slug, url, userId} = await request.json()
 
   if (!url || !url.startsWith("http")) {
     return new Response ('Invalid URL', {status: 400})
