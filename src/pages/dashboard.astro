@@ -13,7 +13,7 @@ import { getUserLinks } from "@/db/client";
 const user = await Astro.locals.currentUser();
 if (!user) return Astro.redirect("/");
 
-const URL = Astro.url.origin
+const BASE_URL = Astro.url.origin
 
 const userId = user.emailAddresses[0]?.emailAddress;
 const userLinks = await getUserLinks(userId);
@@ -77,9 +77,10 @@ const userLinks = await getUserLinks(userId);
                     </div>
                     <a
                       href={String(original)}
+                      target="_blank"
                       class="font-medium hover:underline cursor-pointer"
                     >
-                      {URL}/{id}
+                      {BASE_URL}/{id}
                     </a>
                     <button class=" text-gray-400 hover:text-white hover:-rotate-3 transition cursor-pointer">
                       <Copy width={18} height={18} />
@@ -126,11 +127,12 @@ const userLinks = await getUserLinks(userId);
         </div>
       </div>
       <div>
-        <form class="space-y-4">
+        <form id="url-form" class="space-y-4">
           <div>
             <label class="text-sm font-medium mb-2 block ">URL Original</label>
             <input
               placeholder="https://tu-url-larga.com"
+              name="original-url"
               class="bg-[#1a2622] border-[#2a3c36] text-white focus-visible:ring-emerald-500 w-full px-3 py-2"
             />
           </div>
@@ -145,8 +147,9 @@ const userLinks = await getUserLinks(userId);
                 cortame.link/
               </span>
               <input
+                name="slug"
                 placeholder="mi-link"
-                class="rounded-l-none bg-[#1a2622] border-[#2a3c36] text-white focus-visible:ring-emerald-500 px-3 py-2"
+                class="rounded-l-none bg-[#1a2622] border-[#2a3c36] text-white focus-visible:ring-emerald-500 px-3 py-2 w-full"
               />
             </div>
           </div>
@@ -166,13 +169,35 @@ const userLinks = await getUserLinks(userId);
               Usar IA para optimizar
             </label>
           </div>
+          <button 
+            type="submit"
+            class="bg-emerald-600 hover:bg-emerald-700 w-full rounded-md py-2 cursor-pointer transition"
+          >
+            Crear Link
+          </button>
         </form>
-      </div>
-      <div>
-        <button class="bg-emerald-600 hover:bg-emerald-700 w-full rounded-md py-2 cursor-pointer transition">
-          Crear Link
-        </button>
       </div>
     </div>
   </section>
 </Layout>
+
+<script>
+  document.querySelector('#url-form')?.addEventListener('submit', async (e) => {
+    e.preventDefault()
+
+    const formData = new FormData(e.target as HTMLFormElement)
+    const originalUrl = formData.get('original-url')
+    const slug = formData.get('slug')
+
+    const res = await fetch('/api/shorten', {
+      method: 'POST',
+      body: JSON.stringify({
+        slug,
+        url: originalUrl
+      }),
+      headers: {'Content-Type': 'application/json'}
+    })
+    
+    console.log(res)
+  })
+</script>
