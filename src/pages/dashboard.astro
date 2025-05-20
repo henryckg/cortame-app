@@ -2,6 +2,12 @@
 import Card from "@/components/Card.astro";
 import LinkCard from "@/components/LinkCard.astro";
 import Layout from "@/layouts/Layout.astro";
+import Copy from "@/assets/svg/copy.svg"
+import Link from "@/assets/svg/link.svg"
+import ChartBar from "@/assets/svg/chart-bar.svg"
+import QR from "@/assets/svg/qrcode.svg"
+import Trash from "@/assets/svg/trash.svg"
+import ExternalLink from "@/assets/svg/external-link.svg"
 ---
 
 <Layout title="Dashboard - Cortame">
@@ -57,36 +63,43 @@ import Layout from "@/layouts/Layout.astro";
               <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div class="flex-1">
                   <div class="flex items-center gap-2 mb-1">
+                    <div class="text-emerald-500">
+                      <Link width={18} height={18} stroke="currentColor" />
+                    </div>
                     <span class="font-medium">
-                      shortlink.com/promo
+                      shortlink.com/promo 
                     </span>
                     <button
-                      class="h-6 w-6 text-gray-400 hover:text-white"
+                      class=" text-gray-400 hover:text-white hover:-rotate-3 transition cursor-pointer"
                     >
+                      <Copy width={18} height={18}/>
                     </button>
                   </div>
                   <div class="text-sm text-gray-400 truncate">
                     https://ejemplo-de-url-muy-larga-que-necesita-ser-acortada.com/pagina-ejemplo-
                   </div>
                 </div>
-                <div class="flex items-center gap-2 text-sm text-gray-400">
-                  <span>{item * 42} visitas</span>
-                </div>
-                <div class="flex items-center gap-2">
+                <div class="flex items-center gap-6">
+                  <div class="flex items-center gap-2 text-sm text-gray-400">
+                    <ChartBar width={18} height={18}/>
+                    <span>{item * 42} visitas</span>
+                  </div>
                   <button
-                    class="border-emerald-600 text-emerald-400 hover:bg-emerald-900/20"
+                    class="border border-emerald-600 rounded-md text-emerald-400 hover:text-white hover:bg-emerald-900/40 flex justify-between items-center w-16 h-8 px-2 text-sm
+                    transition cursor-pointer"
                   >
-                    QR
+                    <QR width={18} height={18}/> 
+                    <span>QR</span>
                   </button>
                   <button
-                    class="text-gray-400 hover:text-white"
+                    class="text-gray-400 hover:text-white transition cursor-pointer"
                   >
-
+                    <ExternalLink width={18} height={18} />
                   </button>
                   <button
-                    class="text-gray-400 hover:text-white"
+                    class="text-gray-400 hover:text-red-800 transition cursor-pointer"
                   >
-                    X
+                    <Trash width={18} height={18}/>
                   </button>
                 </div>
               </div>
