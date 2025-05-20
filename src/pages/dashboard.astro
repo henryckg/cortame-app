@@ -2,16 +2,19 @@
 import Card from "@/components/Card.astro";
 import LinkCard from "@/components/LinkCard.astro";
 import Layout from "@/layouts/Layout.astro";
-import Copy from "@/assets/svg/copy.svg"
-import Link from "@/assets/svg/link.svg"
-import ChartBar from "@/assets/svg/chart-bar.svg"
-import QR from "@/assets/svg/qrcode.svg"
-import Trash from "@/assets/svg/trash.svg"
-import ExternalLink from "@/assets/svg/external-link.svg"
+import Copy from "@/assets/svg/copy.svg";
+import Link from "@/assets/svg/link.svg";
+import ChartBar from "@/assets/svg/chart-bar.svg";
+import QR from "@/assets/svg/qrcode.svg";
+import Trash from "@/assets/svg/trash.svg";
+import ExternalLink from "@/assets/svg/external-link.svg";
+import { getUserLinks } from "@/db/client";
 
-const user = await Astro.locals.currentUser()
-if (!user) return Astro.redirect("/")
+const user = await Astro.locals.currentUser();
+if (!user) return Astro.redirect("/");
 
+const userId = user.emailAddresses[0]?.emailAddress;
+const userLinks = await getUserLinks(userId);
 ---
 
 <Layout title="Dashboard - Cortame">
@@ -25,7 +28,7 @@ if (!user) return Astro.redirect("/")
   </div>
 
   <section class="grid grid-cols-3 justify-items-center gap-8 mb-8">
-    <Card title="Total de Links" content="10" />
+    <Card title="Total de Links" content={userLinks.length} />
     <Card title="Total de Links" content="10" />
     <Card title="Total de Links" content="10" />
   </section>
@@ -61,8 +64,8 @@ if (!user) return Astro.redirect("/")
 
     <div class="space-y-4">
       {
-        [1, 2, 3].map((item) => (
-          <LinkCard key={item} class="bg-[#1c2b27] border-[#2a3c36] text-white">
+        userLinks.map(({ id, original }) => (
+          <LinkCard class="bg-[#1c2b27] border-[#2a3c36] text-white">
             <div class="p-4">
               <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div class="flex-1">
@@ -70,40 +73,39 @@ if (!user) return Astro.redirect("/")
                     <div class="text-emerald-500">
                       <Link width={18} height={18} stroke="currentColor" />
                     </div>
-                    <span class="font-medium">
-                      shortlink.com/promo 
-                    </span>
-                    <button
-                      class=" text-gray-400 hover:text-white hover:-rotate-3 transition cursor-pointer"
+                    <a
+                      href={String(original)}
+                      class="font-medium hover:underline cursor-pointer"
                     >
-                      <Copy width={18} height={18}/>
+                      cortame.link/{id}
+                    </a>
+                    <button class=" text-gray-400 hover:text-white hover:-rotate-3 transition cursor-pointer">
+                      <Copy width={18} height={18} />
                     </button>
                   </div>
-                  <div class="text-sm text-gray-400 truncate">
-                    https://ejemplo-de-url-muy-larga-que-necesita-ser-acortada.com/pagina-ejemplo-
-                  </div>
+                  <div class="text-sm text-gray-400 truncate">{original}</div>
                 </div>
                 <div class="flex items-center gap-6">
                   <div class="flex items-center gap-2 text-sm text-gray-400">
-                    <ChartBar width={18} height={18}/>
-                    <span>{item * 42} visitas</span>
+                    <ChartBar width={18} height={18} />
+                    <span>42 visitas</span>
                   </div>
                   <button
                     class="border border-emerald-600 rounded-md text-emerald-400 hover:text-white hover:bg-emerald-900/40 flex justify-between items-center w-16 h-8 px-2 text-sm
                     transition cursor-pointer"
                   >
-                    <QR width={18} height={18}/> 
+                    <QR width={18} height={18} />
                     <span>QR</span>
                   </button>
-                  <button
+                  <a
+                    href={String(original)}
+                    target="_blank"
                     class="text-gray-400 hover:text-white transition cursor-pointer"
                   >
                     <ExternalLink width={18} height={18} />
-                  </button>
-                  <button
-                    class="text-gray-400 hover:text-red-800 transition cursor-pointer"
-                  >
-                    <Trash width={18} height={18}/>
+                  </a>
+                  <button class="text-gray-400 hover:text-red-800 transition cursor-pointer">
+                    <Trash width={18} height={18} />
                   </button>
                 </div>
               </div>
@@ -111,6 +113,64 @@ if (!user) return Astro.redirect("/")
           </LinkCard>
         ))
       }
+    </div>
+
+
+    <div class="rounded-md border w-full bg-forest-darker border-forest-dark flex flex-col justify-between px-8 py-4 gap-8">
+      <div>
+        <h3 class="text-xl font-bold">Crear Nuevo Link</h3>
+        <div class="text-gray-400">
+          Acorta una URL y opcionalmente genera un código QR
+        </div>
+      </div>
+      <div>
+        <form class="space-y-4">
+          <div>
+            <label class="text-sm font-medium mb-1 block ">URL Original</label>
+            <input
+              placeholder="https://tu-url-larga.com"
+              class="bg-[#1a2622] border-[#2a3c36] text-white focus-visible:ring-emerald-500 w-full px-3 py-2"
+            />
+          </div>
+          <div>
+            <label class="text-sm font-medium mb-1 block"
+              >Alias personalizado (opcional)</label
+            >
+            <div class="flex items-center">
+              <span
+                class="bg-[#1a2622] border border-r-0 border-[#2a3c36] px-3 py-2 rounded-l-md text-gray-400"
+              >
+                cortame.link/
+              </span>
+              <input
+                placeholder="mi-link"
+                class="rounded-l-none bg-[#1a2622] border-[#2a3c36] text-white focus-visible:ring-emerald-500 px-3 py-2"
+              />
+            </div>
+          </div>
+          <div class="flex items-center space-x-2">
+            <input
+              type="checkbox"
+              id="generate-qr"
+              class="accent-emerald-500"
+            />
+            <label for="generate-qr" class="text-sm">
+              Generar código QR
+            </label>
+          </div>
+          <div class="flex items-center space-x-2">
+            <input type="checkbox" id="use-ai" class="accent-emerald-500" />
+            <label for="use-ai" class="text-sm">
+              Usar IA para optimizar
+            </label>
+          </div>
+        </form>
+      </div>
+      <div>
+        <button class="bg-emerald-600 hover:bg-emerald-700 w-full rounded-md py-2 cursor-pointer transition">
+          Crear Link
+        </button>
+      </div>
     </div>
   </section>
 </Layout>
