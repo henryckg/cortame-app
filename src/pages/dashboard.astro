@@ -61,7 +61,7 @@ const userLinks = await getUserLinks(userId);
               <span
                 class="bg-[#1a2622] border border-r-0 border-[#2a3c36] px-3 py-2 rounded-l-md text-gray-400"
               >
-                cortame.link/
+                {BASE_URL}/
               </span>
               <input
                 name="slug"
@@ -74,14 +74,20 @@ const userLinks = await getUserLinks(userId);
             <input
               type="checkbox"
               id="generate-qr"
-              class="accent-emerald-500"
+              class="accent-emerald-500 cursor-not-allowed"
+              disabled
             />
             <label for="generate-qr" class="text-sm">
               Generar código QR
             </label>
           </div>
           <div class="flex items-center space-x-2">
-            <input type="checkbox" id="use-ai" class="accent-emerald-500" />
+            <input 
+              type="checkbox" 
+              id="use-ai" 
+              class="accent-emerald-500 cursor-not-allowed"
+              disabled
+            />
             <label for="use-ai" class="text-sm">
               Usar IA para optimizar
             </label>
