@@ -22,11 +22,11 @@ const userLinks = await getUserLinks(userId);
 <Layout title="Dashboard - Córtame">
   <div class="flex justify-between items-center mb-8">
     <h1 class="text-2xl font-bold">Dashboard</h1>
-    <button
+    <!-- <button
       class="bg-emerald-600 hover:bg-emerald-700 transition-all duration-150 cursor-pointer text-white px-4 py-2 text-md rounded-md hover:scale-105"
     >
       + Nuevo Link
-    </button>
+    </button> -->
   </div>
 
   <section class="grid grid-cols-3 justify-items-center gap-8 mb-8">
@@ -36,6 +36,66 @@ const userLinks = await getUserLinks(userId);
   </section>
 
   <section class="mb-8 flex flex-col gap-4">
+    <div class="rounded-md border w-full bg-forest-darker border-forest-dark flex flex-col justify-between px-8 py-4 gap-8">
+      <div>
+        <h3 class="text-lg font-bold">Crear Nuevo Link</h3>
+        <div class="text-gray-400">
+          Acorta una URL y opcionalmente genera un código QR
+        </div>
+      </div>
+      <div>
+        <form id="url-form" class="space-y-4">
+          <div>
+            <label class="text-sm font-medium mb-2 block ">URL Original</label>
+            <input
+              placeholder="https://tu-url-larga.com"
+              name="original-url"
+              class="bg-[#1a2622] border-[#2a3c36] text-white focus-visible:ring-emerald-500 w-full px-3 py-2"
+            />
+          </div>
+          <div>
+            <label class="text-sm font-medium mb-2 block"
+              >Alias personalizado (opcional)</label
+            >
+            <div class="flex items-center">
+              <span
+                class="bg-[#1a2622] border border-r-0 border-[#2a3c36] px-3 py-2 rounded-l-md text-gray-400"
+              >
+                cortame.link/
+              </span>
+              <input
+                name="slug"
+                placeholder="mi-link"
+                class="rounded-l-none bg-[#1a2622] border-[#2a3c36] text-white focus-visible:ring-emerald-500 px-3 py-2 w-full"
+              />
+            </div>
+          </div>
+          <div class="flex items-center space-x-2">
+            <input
+              type="checkbox"
+              id="generate-qr"
+              class="accent-emerald-500"
+            />
+            <label for="generate-qr" class="text-sm">
+              Generar código QR
+            </label>
+          </div>
+          <div class="flex items-center space-x-2">
+            <input type="checkbox" id="use-ai" class="accent-emerald-500" />
+            <label for="use-ai" class="text-sm">
+              Usar IA para optimizar
+            </label>
+          </div>
+          <button 
+            type="submit"
+            class="bg-emerald-600 hover:bg-emerald-700 w-full rounded-md py-2 cursor-pointer transition"
+          >
+            Crear Link
+          </button>
+        </form>
+      </div>
+    </div>
+    
     <div class="flex items-center justify-between">
       <h2 class="text-xl font-bold">Gestionar Links</h2>
       <form>
@@ -119,65 +179,7 @@ const userLinks = await getUserLinks(userId);
     </div>
 
 
-    <div class="rounded-md border w-full bg-forest-darker border-forest-dark flex flex-col justify-between px-8 py-4 gap-8">
-      <div>
-        <h3 class="text-lg font-bold">Crear Nuevo Link</h3>
-        <div class="text-gray-400">
-          Acorta una URL y opcionalmente genera un código QR
-        </div>
-      </div>
-      <div>
-        <form id="url-form" class="space-y-4">
-          <div>
-            <label class="text-sm font-medium mb-2 block ">URL Original</label>
-            <input
-              placeholder="https://tu-url-larga.com"
-              name="original-url"
-              class="bg-[#1a2622] border-[#2a3c36] text-white focus-visible:ring-emerald-500 w-full px-3 py-2"
-            />
-          </div>
-          <div>
-            <label class="text-sm font-medium mb-2 block"
-              >Alias personalizado (opcional)</label
-            >
-            <div class="flex items-center">
-              <span
-                class="bg-[#1a2622] border border-r-0 border-[#2a3c36] px-3 py-2 rounded-l-md text-gray-400"
-              >
-                cortame.link/
-              </span>
-              <input
-                name="slug"
-                placeholder="mi-link"
-                class="rounded-l-none bg-[#1a2622] border-[#2a3c36] text-white focus-visible:ring-emerald-500 px-3 py-2 w-full"
-              />
-            </div>
-          </div>
-          <div class="flex items-center space-x-2">
-            <input
-              type="checkbox"
-              id="generate-qr"
-              class="accent-emerald-500"
-            />
-            <label for="generate-qr" class="text-sm">
-              Generar código QR
-            </label>
-          </div>
-          <div class="flex items-center space-x-2">
-            <input type="checkbox" id="use-ai" class="accent-emerald-500" />
-            <label for="use-ai" class="text-sm">
-              Usar IA para optimizar
-            </label>
-          </div>
-          <button 
-            type="submit"
-            class="bg-emerald-600 hover:bg-emerald-700 w-full rounded-md py-2 cursor-pointer transition"
-          >
-            Crear Link
-          </button>
-        </form>
-      </div>
-    </div>
+    
   </section>
 </Layout>
 
