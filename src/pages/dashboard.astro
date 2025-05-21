@@ -17,6 +17,7 @@ const BASE_URL = Astro.url.origin
 
 const userId = user.emailAddresses[0]?.emailAddress;
 const userLinks = await getUserLinks(userId);
+const randomNumber = Math.floor(Math.random() * 150) + 1
 ---
 
 <Layout title="Dashboard - Córtame">
@@ -31,8 +32,8 @@ const userLinks = await getUserLinks(userId);
 
   <section class="grid grid-cols-3 justify-items-center gap-8 mb-8">
     <Card title="Total de Links" content={userLinks.length} />
-    <Card title="Total de Links" content="10" />
-    <Card title="Total de Links" content="10" />
+    <Card title="Visitas Totales" content={randomNumber} />
+    <Card title="Códigos QR Generados" content={userLinks.length} />
   </section>
 
   <section class="mb-8 flex flex-col gap-4">
