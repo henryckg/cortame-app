@@ -55,3 +55,14 @@ export const getUserLinks = async (user: string) => {
 
   return results.rows
 }
+
+export const deleteLink = async (id: string, userId: string) => {
+  const sql = `DELETE FROM urls WHERE id = ? AND user_id = ?`
+
+  const result = await client.execute({
+    sql,
+    args: [id, userId]
+  })
+
+  return result.rowsAffected > 0
+}

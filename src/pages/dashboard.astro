@@ -118,21 +118,24 @@ const randomNumber = Math.floor(Math.random() * 150) + 1
       class="bg-forest-darker border rounded-md border-forest w-52 flex justify-between text-gray-400 px-4 py-2 text-sm"
     >
       <button
-        class="cursor-pointer data-[state=active]:bg-emerald-600 data-[state=active]:text-white"
+        class="cursor-not-allowed data-[state=active]:bg-emerald-600 data-[state=active]:text-white"
         >Todos</button
       >
       <button
-        class="cursor-pointer data-[state=active]:bg-emerald-600 data-[state=active]:text-white"
+        class="cursor-not-allowed data-[state=active]:bg-emerald-600 data-[state=active]:text-white"
         >Con QR</button
       >
       <button
-        class="cursor-pointer data-[state=active]:bg-emerald-600 data-[state=active]:text-white"
+        class="cursor-not-allowed data-[state=active]:bg-emerald-600 data-[state=active]:text-white"
         >Con IA</button
       >
     </aside>
 
-    <div class="space-y-4 mb-8">
+    <div class="space-y-4 mb-8 flex justify-center">
       {
+        userLinks.length < 1 ? (
+          <span class="text-center text-gray-400 mt-4">No hay ningún link creado</span>
+        ) : (
         userLinks.map(({ id, original }) => (
           <LinkCard class="bg-[#1c2b27] border-[#2a3c36] text-white">
             <div class="p-4">
@@ -177,14 +180,17 @@ const randomNumber = Math.floor(Math.random() * 150) + 1
                   >
                     <ExternalLink width={18} height={18} />
                   </a>
-                  <button class="text-gray-400 hover:text-red-800 transition cursor-pointer">
+                  <button
+                    data-link={id} 
+                    class="delete-btn text-gray-400 hover:text-red-800 transition cursor-pointer"
+                  >
                     <Trash width={18} height={18} />
                   </button>
                 </div>
               </div>
             </div>
           </LinkCard>
-        ))
+        )))
       }
     </div>
 
@@ -196,6 +202,8 @@ const randomNumber = Math.floor(Math.random() * 150) + 1
 <script>
   const urlForm = document.querySelector('#url-form')
   const copyButtons = document.querySelectorAll('.copy-btn')
+  const deleteButtons = document.querySelectorAll('.delete-btn')
+  
 
   urlForm?.addEventListener('submit', async (e) => {
     e.preventDefault()
@@ -224,6 +232,24 @@ const randomNumber = Math.floor(Math.random() * 150) + 1
       const url = btn.getAttribute('data-url')
       if (url) {
         navigator.clipboard.writeText(url)
+      }
+    })
+  })
+
+  deleteButtons?.forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const id = btn.getAttribute('data-link') 
+
+      const res = await fetch('/api/delete', {
+        method: 'DELETE',
+        body: JSON.stringify({
+          id
+        }),
+        headers: {'Content-Type': 'application/json'}
+      })
+
+      if (res.ok) {
+        window.location.reload()
       }
     })
   })
