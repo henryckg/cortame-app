@@ -182,7 +182,8 @@ const userLinks = await getUserLinks(userId);
 </Layout>
 
 <script>
-  document.querySelector('#url-form')?.addEventListener('submit', async (e) => {
+  const urlForm = document.querySelector('#url-form') as HTMLFormElement | null;
+  urlForm?.addEventListener('submit', async (e) => {
     e.preventDefault()
 
     const formData = new FormData(e.target as HTMLFormElement)
@@ -197,6 +198,10 @@ const userLinks = await getUserLinks(userId);
       }),
       headers: {'Content-Type': 'application/json'}
     })
+
+    if (res.ok) {
+      window.location.reload()
+    }
 
   })
 </script>
