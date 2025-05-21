@@ -1,4 +1,4 @@
-import { createLink, createUser } from '@/db/client'
+import { createLink, createUser, getUser } from '@/db/client'
 import type { APIRoute } from 'astro'
 
 export const POST: APIRoute = async ({request, locals}) => {
@@ -13,7 +13,10 @@ export const POST: APIRoute = async ({request, locals}) => {
   }
 
   try {
-    const user = await createUser(userId)
+    const existingUser = await getUser(userId)
+    if (!existingUser) {
+      await createUser(userId)
+    }
     const id = await createLink(slug, url, userId)
     const shortUrl = `${new URL(request.url).origin}/${id}`
 

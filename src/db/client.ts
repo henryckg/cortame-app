@@ -39,6 +39,13 @@ export const createUser = async (user:string) => {
   return user
 }
 
+export const getUser = async (user: string) => {
+  const sql = `SELECT email FROM users WHERE email = ?`
+
+  const result = await client.execute({sql, args: [user]})
+  return result.rows[0]?.email
+}
+
 export const getUserLinks = async (user: string) => {
   const sql = `SELECT id, original, created_at FROM urls WHERE user_id = ? ORDER BY created_at DESC`
   const results = await client.execute({
