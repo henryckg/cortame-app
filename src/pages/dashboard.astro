@@ -30,7 +30,7 @@ const randomNumber = Math.floor(Math.random() * 150) + 1
     </button> -->
   </div>
 
-  <section class="grid grid-cols-3 justify-items-center gap-8 mb-8">
+  <section class="grid grid-cols-1 lg:grid-cols-3 justify-items-center gap-8 mb-8">
     <Card title="Total de Links" content={userLinks.length} />
     <Card title="Visitas Totales" content={randomNumber} />
     <Card title="Códigos QR Generados" content={userLinks.length} />
@@ -58,16 +58,16 @@ const randomNumber = Math.floor(Math.random() * 150) + 1
             <label class="text-sm font-medium mb-2 block"
               >Alias personalizado (opcional)</label
             >
-            <div class="flex items-center">
+            <div class="flex flex-col lg:flex-row items-center">
               <span
-                class="bg-[#1a2622] border border-r-0 border-[#2a3c36] px-3 py-2 rounded-l-md text-gray-400 w-80 text-center"
+                class="bg-[#1a2622] border rounded-t-md lg:border-r-0 lg:rounded-md lg:rounded-r-none border-[#2a3c36] px-3 py-2 text-gray-400 lg:w-80 text-center w-full"
               >
                 {BASE_URL}/
               </span>
               <input
                 name="slug"
                 placeholder="mi-link"
-                class="rounded-l-none bg-[#1a2622] border-[#2a3c36] text-white focus-visible:ring-emerald-500 px-3 py-2 w-full"
+                class="border border-t-0 rounded-b-md lg:border lg:rounded-md lg:rounded-l-none bg-[#1a2622] border-[#2a3c36] text-white focus-visible:ring-emerald-500 px-3 py-2 w-full"
               />
             </div>
           </div>
@@ -136,7 +136,7 @@ const randomNumber = Math.floor(Math.random() * 150) + 1
         userLinks.map(({ id, original }) => (
           <LinkCard class="bg-[#1c2b27] border-[#2a3c36] text-white">
             <div class="p-4">
-              <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+              <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
                 <div class="flex-1">
                   <div class="flex items-center gap-2 mb-1">
                     <div class="text-emerald-500">
@@ -222,7 +222,6 @@ const randomNumber = Math.floor(Math.random() * 150) + 1
   copyButtons?.forEach((btn) => {
     btn.addEventListener('click', () => {
       const url = btn.getAttribute('data-url')
-      console.log(url)
       if (url) {
         navigator.clipboard.writeText(url)
       }
