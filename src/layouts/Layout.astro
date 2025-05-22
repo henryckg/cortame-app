@@ -1,6 +1,9 @@
 ---
 import Header from "@/sections/Header.astro"
+import "@pheralb/toast/dist/styles.css";
 import "@/styles/global.css"
+import {Toaster} from "@pheralb/toast"
+import XIcon from "@/assets/svg/x.svg"
 
 const {title} = Astro.props
 ---
@@ -17,6 +20,23 @@ const {title} = Astro.props
 		<Header />
 		<main class="container mx-auto px-4 py-4">
 			<slot />
+			<Toaster 
+				client:load
+				toastOptions={{
+					animationOnClose: "swipe",
+					headless: true,
+					classNames: {
+      			toast: 'font-sans text-sm font-medium z-50 bg-forest-darker/80 dark:bg-forest-darker/80 text-zinc-900 dark:text-zinc-100 border border-emerald-700 dark:border-emerald-700 rounded-lg shadow-md relative flex items-center',
+						container: 'flex items-center py-4 space-x-2 px-4 w-full',
+						content: 'flex flex-col space-y-0.5 mr-2',
+						actions: {
+        			container: 'flex flex-col px-3 border-l border-emerald-700 h-14',
+							actionBtn: 'border',
+							closeBtn: 'cursor-pointer flex items-center h-full'
+      			}
+					}
+				}}
+			/>
 		</main>
 		<footer class="container mx-auto px-4 py-6 mt-auto"> 
 			<div class="border-t boder-[#2a3c36] pt-8 text-center text-sm text-gray-400">

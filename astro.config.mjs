@@ -6,6 +6,8 @@ import clerk from "@clerk/astro";
 import { dark } from '@clerk/themes'
 import { esMX } from '@clerk/localizations';
 
+import react from '@astrojs/react';
+
 // https://astro.build/config
 export default defineConfig({
   vite: {
@@ -16,7 +18,7 @@ export default defineConfig({
     appearance: {
       baseTheme: dark,
     }
-  })],
+  }), react()],
   adapter: vercel({}),
   output: "server"
 });
