@@ -9,7 +9,7 @@ export const POST: APIRoute = async ({request, locals}) => {
   const userId = user?.emailAddresses[0]?.emailAddress
 
   if (!url || !url.startsWith("http")) {
-    return new Response ('Invalid URL', {status: 400})
+    return new Response (JSON.stringify('Invalid URL'), {status: 400})
   }
 
   try {

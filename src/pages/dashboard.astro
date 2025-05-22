@@ -227,13 +227,14 @@ const randomNumber = Math.floor(Math.random() * 150) + 1
       toast.success({
       text: "Link creado",
     })
-
       setTimeout(() => {
         window.location.reload()
       }, 800)
     } else {
+      const errorMessage = await res.json()
       toast.error({
-        text: "No se pudo crear el link"
+        text: "No se pudo crear el link",
+        description: errorMessage
       })
     }
 
