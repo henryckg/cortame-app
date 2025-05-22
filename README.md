@@ -1,8 +1,8 @@
 Córtame es una aplicación web para generar URLs cortas para usuarios registrados. Sus principales características son:
 - Generar URL cortas con descripción elegida por el usuario.
-- Crear código QR para los links ya creados (en construcción).
-- Mostrar estadísticas generales de los links (en construcción)
-- Uso de IA (en construcción) para: generar nombre de links, evaluar rendimiento de visitas, etc.
+- Crear código QR para los links ya creados.
+- Mostrar estadísticas generales de los links (en construcción) 🚧
+- Uso de IA (en construcción) para: generar nombre de links, evaluar rendimiento de visitas, etc. 🚧
 
 ## ☁  Deploy
 [https://cortame-app.vercel.app](https://cortame-app.vercel.app)
