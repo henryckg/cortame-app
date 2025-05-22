@@ -131,10 +131,10 @@ const randomNumber = Math.floor(Math.random() * 150) + 1
       >
     </aside>
 
-    <div class="space-y-4 mb-8 flex justify-center">
+    <div class="space-y-4 mb-8">
       {
         userLinks.length < 1 ? (
-          <span class="text-center text-gray-400 mt-4">No hay ningún link creado</span>
+          <span class="text-center text-gray-400 mt-4 flex justify-center">No hay ningún link creado</span>
         ) : (
         userLinks.map(({ id, original }) => (
           <LinkCard class="bg-[#1c2b27] border-[#2a3c36] text-white">
@@ -200,6 +200,8 @@ const randomNumber = Math.floor(Math.random() * 150) + 1
 </Layout>
 
 <script>
+  import {toast} from "@pheralb/toast"
+
   const urlForm = document.querySelector('#url-form')
   const copyButtons = document.querySelectorAll('.copy-btn')
   const deleteButtons = document.querySelectorAll('.delete-btn')
@@ -222,7 +224,17 @@ const randomNumber = Math.floor(Math.random() * 150) + 1
     })
 
     if (res.ok) {
-      window.location.reload()
+      toast.success({
+      text: "Link creado",
+    })
+
+      setTimeout(() => {
+        window.location.reload()
+      }, 800)
+    } else {
+      toast.error({
+        text: "No se pudo crear el link"
+      })
     }
 
   })
@@ -249,7 +261,13 @@ const randomNumber = Math.floor(Math.random() * 150) + 1
       })
 
       if (res.ok) {
+        toast.success({
+          text: "Link eliminado"
+        })
+
+        setTimeout(() => {
         window.location.reload()
+        }, 800)
       }
     })
   })
