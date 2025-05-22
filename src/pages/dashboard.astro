@@ -244,6 +244,9 @@ const randomNumber = Math.floor(Math.random() * 150) + 1
     btn.addEventListener('click', () => {
       const url = btn.getAttribute('data-url')
       if (url) {
+        toast.info({
+          text: "Link copiado"
+        })
         navigator.clipboard.writeText(url)
       }
     })
