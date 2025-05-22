@@ -198,8 +198,8 @@ const randomNumber = Math.floor(Math.random() * 150) + 1
     <div id="qr-modal" class="hidden fixed inset-0 bg-black/10 backdrop-blur-sm justify-center items-center z-50">
       <div class="bg-forest-darker border border-emerald-700 rounded-lg p-8 max-w-xs w-full shadow-xl text-center relative">
         <button id="qr-close" class="absolute top-4 right-4 text-gray-500 hover:text-emerald-400 text-2xl cursor-pointer transition">&times;</button>
-        <h2 class="text-lg mb-4">Código QR</h2>
-        <img id="qr-img" src="" alt="QR" class="mx-auto w-full max-w-[200px]">
+        <h2 class="text-lg mb-4 font-bold">Código QR</h2>
+        <div id="qr-svg-container" class="flex justify-center items-center"></div>
       </div>
     </div>
     
@@ -215,7 +215,7 @@ const randomNumber = Math.floor(Math.random() * 150) + 1
   const qrButtons = document.querySelectorAll('.qr-btn')
   const modalQR = document.querySelector('#qr-modal')
   const closeModal = document.querySelector('#qr-close')
-  const qrImg = document.querySelector('#qr-img') as HTMLImageElement
+  const qrSvgContainer = document.querySelector('#qr-svg-container')
   
 
   urlForm?.addEventListener('submit', async (e) => {
@@ -298,10 +298,10 @@ const randomNumber = Math.floor(Math.random() * 150) + 1
 
       try {
         const res = await fetch(`/api/qr/${id}`)
-        const data = await res.json()
+        const {svg} = await res.json()
 
-        if (data.qr && qrImg) {
-          qrImg.src = data.qr
+        if (svg && qrSvgContainer) {
+          qrSvgContainer.innerHTML = svg
           modalQR?.classList.remove('hidden')
           modalQR?.classList.add('flex')
         } else { 
