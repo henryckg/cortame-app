@@ -15,7 +15,9 @@ Córtame es una aplicación web para generar URLs cortas para usuarios registrad
 - Clerk Auth
 - TailwindCSS
 - Turso
+- [Toast (pheralb)](https://toast.pheralb.dev/)
 - Tabler icons
+- QR Code
 
 ## 🔑 Uso de Clerk
  - Registro e inicio de sesión con Github o Google.
