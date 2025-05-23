@@ -1,8 +1,8 @@
 Córtame es una aplicación web para generar URLs cortas para usuarios registrados. Sus principales características son:
 - Generar URL cortas con descripción elegida por el usuario.
-- Crear código QR para los links ya creados (en construcción).
-- Mostrar estadísticas generales de los links (en construcción)
-- Uso de IA (en construcción) para: generar nombre de links, evaluar rendimiento de visitas, etc.
+- Crear código QR para los links ya creados.
+- Mostrar estadísticas generales de los links (en construcción) 🚧
+- Uso de IA (en construcción) para: generar nombre de links, evaluar rendimiento de visitas, etc. 🚧
 
 ## ☁  Deploy
 [https://cortame-app.vercel.app](https://cortame-app.vercel.app)
@@ -10,12 +10,14 @@ Córtame es una aplicación web para generar URLs cortas para usuarios registrad
 ## 📁 Repositorio:
 [https://github.com/henryckg/cortame-app](https://github.com/henryckg/cortame-app)
 
-## ⚙️ Teconologías:
+## ⚙️ Tecnologías:
 - Astro
 - Clerk Auth
 - TailwindCSS
 - Turso
+- [Toast (pheralb)](https://toast.pheralb.dev/)
 - Tabler icons
+- QR Code
 
 ## 🔑 Uso de Clerk
  - Registro e inicio de sesión con Github o Google.
