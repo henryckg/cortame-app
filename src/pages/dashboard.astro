@@ -8,6 +8,7 @@ import ChartBar from "@/assets/svg/chart-bar.svg";
 import QR from "@/assets/svg/qrcode.svg";
 import Trash from "@/assets/svg/trash.svg";
 import ExternalLink from "@/assets/svg/external-link.svg";
+import Sparkles from "@/assets/svg/sparkles.svg"
 import { getUserLinks } from "@/db/client";
 
 const user = await Astro.locals.currentUser();
@@ -159,7 +160,19 @@ const randomNumber = Math.floor(Math.random() * 150) + 1
                       <Copy width={18} height={18} />
                     </button>
                   </div>
-                  <div class="text-sm text-gray-400 truncate">{original}</div>
+                  <div class="text-sm text-gray-400 truncate mb-2">
+                    {original}
+                  </div>
+                  <div class="text-xs text-gray-300 bg-[#1a2622] rounded py-2 px-4 border border-forest flex items-center gap-1 mb-1 justify-between">
+                    <p class="line-clamp-2 text-gray-400">Sin descripción</p>
+                    <button
+                    class="text-emerald-400 hover:text-white flex w-28 justify-around items-center transition cursor-not-allowed"
+                    aria-disabled
+                    >
+                      <Sparkles width={16} height={16} stroke="currentColor" />
+                      <span>Generar con IA</span>
+                    </button>
+                  </div>
                 </div>
                 <div class="flex items-center gap-6">
                   <div class="flex items-center gap-2 text-sm text-gray-400">
