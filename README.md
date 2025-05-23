@@ -10,7 +10,7 @@ Córtame es una aplicación web para generar URLs cortas para usuarios registrad
 ## 📁 Repositorio:
 [https://github.com/henryckg/cortame-app](https://github.com/henryckg/cortame-app)
 
-## ⚙️ Teconologías:
+## ⚙️ Tecnologías:
 - Astro
 - Clerk Auth
 - TailwindCSS
