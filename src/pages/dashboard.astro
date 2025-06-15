@@ -63,7 +63,7 @@ const randomNumber = Math.floor(Math.random() * 150) + 1
               <span
                 class="bg-[#1a2622] border rounded-t-md lg:border-r-0 lg:rounded-md lg:rounded-r-none border-[#2a3c36] px-3 py-2 text-gray-400 w-full lg:w-fit"
               >
-                https://cortame-app.vercel.app/
+                {BASE_URL}
               </span>
               <input
                 name="slug"
@@ -151,7 +151,7 @@ const randomNumber = Math.floor(Math.random() * 150) + 1
                       target="_blank"
                       class="font-medium hover:underline cursor-pointer"
                     >
-                      {BASE_URL}/{id}
+                      /{id}
                     </a>
                     <button 
                       class="text-gray-400 hover:text-white hover:-rotate-3 transition cursor-pointer copy-btn"
