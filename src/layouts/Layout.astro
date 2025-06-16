@@ -1,4 +1,5 @@
 ---
+import Analytics from '@vercel/analytics/astro'
 import Header from "@/sections/Header.astro"
 import "@pheralb/toast/dist/styles.css";
 import "@/styles/global.css"
@@ -63,6 +64,7 @@ const {title} = Astro.props
 				<p> {new Date().getFullYear()} Córtame. Hecho con 💚 por <a href="https://henryck.dev">Henryck</a></p> Hackaton 2025 de Clerk x Midudev
 			</div>
 		</footer>
+		<Analytics />
 	</body>
 </html>
 
