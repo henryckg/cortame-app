@@ -17,7 +17,17 @@ if (!user) return Astro.redirect("/");
 const DOMAIN_URL = Astro.url.hostname.replace(/^www\./, '')
 
 const userId = user.emailAddresses[0]?.emailAddress;
-const userLinks = await getUserLinks(userId);
+const mockLinks = [
+  {
+    id: "mdn",
+    original: "https://developer.mozilla.org/en-US/",
+  },
+  {
+    id: "ts-github",
+    original: "https://github.com/microsoft/TypeScript",
+  }
+]
+const userLinks = import.meta.env.DEV_MODE ? mockLinks : await getUserLinks(userId);
 const randomNumber = Math.floor(Math.random() * 150) + 1
 ---
 
@@ -141,7 +151,7 @@ const randomNumber = Math.floor(Math.random() * 150) + 1
           <LinkCard class="bg-forest-darker border-forest text-white">
             <div class="p-4">
               <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
-                <div class="flex-1">
+                <div class="flex-1 truncate">
                   <div class="flex items-center gap-2 mb-1">
                     <div class="text-emerald-500">
                       <Link width={18} height={18} stroke="currentColor" />
