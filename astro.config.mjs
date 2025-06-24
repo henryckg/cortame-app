@@ -1,7 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
-import vercel from '@astrojs/vercel/serverless';
+import vercel from '@astrojs/vercel';
 import clerk from "@clerk/astro";
 import { dark } from '@clerk/themes'
 import { esMX } from '@clerk/localizations';
