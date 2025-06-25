@@ -41,13 +41,15 @@ const randomNumber = Math.floor(Math.random() * 150) + 1
     </button> -->
   </div>
 
-  <section class="grid grid-cols-1 lg:grid-cols-3 justify-items-center gap-8 mb-8">
-    <Card title="Total de Links" content={userLinks.length} />
-    <Card title="Visitas Totales" content={randomNumber} />
-    <Card title="Códigos QR Generados" content={userLinks.length} />
-  </section>
 
-  <section class="mb-8 flex flex-col gap-4">
+
+  <section class="flex flex-col lg:flex-row gap-8 justify-between mb-12">
+    <aside class="flex flex-col justify-between gap-8 w-full lg:w-1/3">
+      <Card title="Total de Links" content={userLinks.length} />
+      <Card title="Visitas Totales" content={randomNumber} />
+      <Card title="Códigos QR Generados" content={userLinks.length} />
+    </aside>
+
     <div class="rounded-md border w-full bg-forest-darker border-forest-dark flex flex-col justify-between px-8 py-4 gap-8">
       <div>
         <h3 class="text-lg font-bold">Crear Nuevo Link</h3>
@@ -113,6 +115,9 @@ const randomNumber = Math.floor(Math.random() * 150) + 1
         </form>
       </div>
     </div>
+  </section>
+    
+  <section class="mb-8 flex flex-col gap-4">
     
     <div class="flex items-center justify-between">
       <h2 class="text-xl font-bold">Gestionar Links</h2>
@@ -226,7 +231,7 @@ const randomNumber = Math.floor(Math.random() * 150) + 1
       </div>
     </div>
     
-  </section>
+  </se>
 </Layout>
 
 <script>
