@@ -9,25 +9,25 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/node": "9.2.1",
-    "@astrojs/react": "4.2.7",
-    "@astrojs/vercel": "8.1.4",
-    "@clerk/astro": "2.7.4",
-    "@clerk/localizations": "3.16.0",
-    "@clerk/themes": "2.2.45",
-    "@libsql/client": "0.15.6",
-    "@pheralb/toast": "1.0.0",
-    "@tailwindcss/vite": "4.1.7",
-    "@types/react": "19.1.5",
-    "@types/react-dom": "19.1.5",
-    "@vercel/analytics": "1.5.0",
-    "astro": "5.7.13",
-    "qrcode": "1.5.4",
-    "react": "19.1.0",
-    "react-dom": "19.1.0",
-    "tailwindcss": "4.1.7"
+    "@astrojs/node": "^9.2.1",
+    "@astrojs/react": "^4.2.7",
+    "@astrojs/vercel": "^8.1.4",
+    "@clerk/astro": "^2.7.4",
+    "@clerk/localizations": "^3.16.0",
+    "@clerk/themes": "^2.2.45",
+    "@libsql/client": "^0.15.6",
+    "@pheralb/toast": "^1.0.0",
+    "@tailwindcss/vite": "^4.1.7",
+    "@types/react": "^19.1.5",
+    "@types/react-dom": "^19.1.5",
+    "@vercel/analytics": "^1.5.0",
+    "astro": "^5.7.13",
+    "qrcode": "^1.5.4",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "tailwindcss": "^4.1.7"
   },
   "devDependencies": {
-    "@types/qrcode": "1.5.5"
+    "@types/qrcode": "^1.5.5"
   }
 }
