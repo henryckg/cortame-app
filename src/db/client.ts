@@ -7,14 +7,23 @@ const client = createClient({
 
 export const createLink = async (id: string | undefined, original: string, userId: string ) => {
   const slug = id && id.trim() !== "" ? id : crypto.randomUUID().slice(0, 6)
-  const sql = `INSERT INTO urls (id, original, user_id) VALUES (?, ?, ?)`
+  const sql = `INSERT INTO urls (id, original, user_id, visits) VALUES (?, ?, ?, ?)`
   
   await client.execute({
     sql,
-    args: [slug, original, userId]
+    args: [slug, original, userId, 0]
   })
 
   return slug
+}
+
+export const updateVisits = async (id: string) => {
+  const sql = `UPDATE urls SET visits = visits + 1 WHERE id = ?`
+
+  await client.execute({
+    sql,
+    args: [id]
+  })
 }
 
 export const getOriginalUrl = async (id: string) => {
@@ -24,6 +33,10 @@ export const getOriginalUrl = async (id: string) => {
     sql,
     args: [id]
   })
+
+  if (result.rows.length > 0) {
+    await updateVisits(id)
+  }
 
   return result.rows[0]?.original || null
 }
@@ -47,7 +60,7 @@ export const getUser = async (user: string) => {
 }
 
 export const getUserLinks = async (user: string) => {
-  const sql = `SELECT id, original, created_at FROM urls WHERE user_id = ? ORDER BY created_at DESC`
+  const sql = `SELECT id, original, created_at, visits FROM urls WHERE user_id = ? ORDER BY created_at DESC`
   const results = await client.execute({
     sql,
     args: [user]

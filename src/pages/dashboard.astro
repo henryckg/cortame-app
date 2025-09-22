@@ -21,14 +21,18 @@ const mockLinks = [
   {
     id: "mdn",
     original: "https://developer.mozilla.org/en-US/",
+    visits: 10,
+    created_at: new Date().toISOString(),
   },
   {
     id: "ts-github",
     original: "https://github.com/microsoft/TypeScript",
+    visits: 25,
+    created_at: new Date().toISOString(),
   }
 ]
 const userLinks = import.meta.env.DEV_MODE ? mockLinks : await getUserLinks(userId);
-const randomNumber = Math.floor(Math.random() * 150) + 1
+const totalVisits = userLinks.reduce((acc, link) => acc + Number(link.visits ?? 0), 0);
 ---
 
 <Layout title="Dashboard - Córtame">
@@ -46,7 +50,7 @@ const randomNumber = Math.floor(Math.random() * 150) + 1
   <section class="flex flex-col lg:flex-row gap-8 justify-between mb-12">
     <aside class="flex flex-col justify-between gap-8 w-full lg:w-1/3">
       <Card title="Total de Links" content={userLinks.length} />
-      <Card title="Visitas Totales" content={randomNumber} />
+      <Card title="Visitas Totales" content={totalVisits} />
       <Card title="Códigos QR Generados" content={userLinks.length} />
     </aside>
 
@@ -152,7 +156,7 @@ const randomNumber = Math.floor(Math.random() * 150) + 1
         userLinks.length < 1 ? (
           <span class="text-center text-gray-400 mt-4 flex justify-center">No hay ningún link creado</span>
         ) : (
-        userLinks.map(({ id, original }) => (
+        userLinks.map(({ id, original, visits }) => (
           <LinkCard class="bg-forest-darker border-forest text-white">
             <div class="p-4">
               <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
@@ -192,7 +196,7 @@ const randomNumber = Math.floor(Math.random() * 150) + 1
                 <div class="flex items-center gap-6">
                   <div class="flex items-center gap-2 text-sm text-gray-400">
                     <ChartBar width={18} height={18} />
-                    <span>42 visitas</span>
+                    <span>{visits} visitas</span>
                   </div>
                   <button
                     data-url-id={id}
