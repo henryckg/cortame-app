@@ -5,7 +5,7 @@ Córtame es una aplicación web para generar URLs cortas para usuarios registrad
 - Uso de IA (en construcción) para: generar nombre de links, evaluar rendimiento de visitas, etc. 🚧
 
 ## ☁  Deploy
-[https://cortame-app.vercel.app](https://cortame-app.vercel.app)
+[https://cortame.link](https://cortame.link)
 
 ## 📁 Repositorio:
 [https://github.com/henryckg/cortame-app](https://github.com/henryckg/cortame-app)
